@@ -191,7 +191,9 @@ VALUES
 
 -- Procedimiento almacenados
 
--- PAra cliente: 
+-- Para cliente: 
+
+-- Select
 DELIMITER $$
 CREATE PROCEDURE proc_select_clientes()
 BEGIN
@@ -204,4 +206,61 @@ BEGIN
         direccion
     FROM Cliente;
 END$$
+DELIMITER ;
+
+--------
+-- PROCEDIMIENTOS PARA CLIENTE
+
+--  Insertar
+
+DELIMITER $$
+CREATE PROCEDURE proc_insert_clientes(
+    IN p_nombre VARCHAR(100),
+    IN p_documento VARCHAR(20),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100),
+    IN p_direccion VARCHAR(100)
+)
+BEGIN
+    INSERT INTO cliente (nombre, documento, telefono, correo, direccion)
+    VALUES (p_nombre, p_documento, p_telefono, p_correo, p_direccion);
+END$$
+
+
+-- Actualizar
+CREATE PROCEDURE proc_update_clientes(
+    IN p_id_cliente INT,
+    IN p_nombre VARCHAR(100),
+    IN p_documento VARCHAR(20),
+    IN p_telefono VARCHAR(20),
+    IN p_correo VARCHAR(100),
+    IN p_direccion VARCHAR(100)
+)
+BEGIN
+    UPDATE cliente
+    SET nombre = p_nombre,
+        documento = p_documento,
+        telefono = p_telefono,
+        correo = p_correo,
+        direccion = p_direccion
+    WHERE id_cliente = p_id_cliente;
+END$$
+
+
+-- Eliminar
+CREATE PROCEDURE proc_delete_clientes(
+    IN p_id_cliente INT
+)
+BEGIN
+    DELETE FROM cliente WHERE id_cliente = p_id_cliente;
+END$$
+
+
+-- Consultar
+CREATE PROCEDURE proc_select_clientes()
+BEGIN
+    SELECT id_cliente, nombre, documento, telefono, correo, direccion
+    FROM cliente;
+END$$
+
 DELIMITER ;
