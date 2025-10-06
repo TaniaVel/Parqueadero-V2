@@ -1,17 +1,52 @@
-from Repositorios import Conexion
+from Repositorios.Cone_Cliente import Conexion_Cliente
+from Entidades.Cliente import Cliente
 
-db = Conexion.Conexion()
+gestion_cliente = Conexion_Cliente()
 
-print("Insertando nuevo cliente...")
-db.InsertarCliente("Juan Torres", "1001234567", "3104567890", "juan.torres@gmail.com", "Calle 50 #10-22")
+# -------------------------------
+# Insertar cliente
+# -------------------------------
+c = Cliente()
+c.SetNombre("Sara Vélez")
+c.SetDocumento("987654321")  
+c.SetTelefono("3111234567")
+c.SetCorreo("sara@gmail.com")
+c.SetDireccion("Calle 45 #12-34")
+print("Insert_cliente: \n ------------")
+gestion_cliente.InsertarCliente(c)
 
-print("Actualizando cliente con id 1...")
-db.ActualizarCliente(1, "Laura Gómez", "1009876543", "3112223344", "laura.gomez@gmail.com", "Av 80 #12-45")
+# -------------------------------
+# Cargar clientes
+# -------------------------------
+print("Select_cliente: \n ------------")
+clientes = gestion_cliente.CargarClientes()
+print("Clientes actuales:")
+for cl in clientes:
+    print(f"{cl.GetIdCliente()} - {cl.GetNombre()} - {cl.GetDocumento()}")
 
-print("Eliminando cliente con id 2...")
-db.EliminarCliente(2)
+# -------------------------------
+# Actualizar cliente por ID
+# -------------------------------
+print("Update_cliente: \n ------------")
+c_actualizar = Cliente()
+c_actualizar.SetIdCliente(34)           
+c_actualizar.SetNombre("Sara Vélez")   
+c_actualizar.SetTelefono("30000000")   # número nuevo
+c_actualizar.SetCorreo("sara.nuevo@gmail.com")  
+c_actualizar.SetDireccion("Calle 45 #12-34")    
 
-print("Cargando todos los clientes...")
-db.CargarClientes()
+gestion_cliente.ActualizarCliente(c_actualizar)
 
+# -------------------------------
+# Verificación de actualización
+# -------------------------------
+clientes = gestion_cliente.CargarClientes()
+print("\nClientes después de actualizar:")
+for cl in clientes:
+    print(f"{cl.GetIdCliente()} - {cl.GetNombre()} - {cl.GetDocumento()} - {cl.GetTelefono()} - {cl.GetCorreo()}")
 
+# -------------------------------
+# Eliminar cliente
+# -------------------------------
+print("Delete_cliente: \n ------------")
+gestion_cliente.EliminarCliente(21)
