@@ -1,14 +1,12 @@
 import pyodbc
 from Entidades import Cliente
 
-import pyodbc
-from Entidades import Clientes  # tu clase Clientes.py
-
+print ("entra acá")
 class Conexion:
     cadena_conexion = (
         "Driver={MySQL ODBC 9.4 Unicode Driver};"
         "Server=localhost;"
-        "Database=db_alquiler;"
+        "Database=db_parqueadero2;"
         "Port=3306;"
         "User=user_python;"
         "Password=123456;"
@@ -23,7 +21,7 @@ class Conexion:
 
         lista: list = []
         for elemento in cursor:
-            entidad: Clientes.Clientes = Clientes.Clientes()
+            entidad: Cliente.Cliente = Cliente.Cliente()
             entidad.SetIdCliente(elemento[0])
             entidad.SetNombre(elemento[1])
             entidad.SetDocumento(elemento[2])

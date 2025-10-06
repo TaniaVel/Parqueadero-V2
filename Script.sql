@@ -183,6 +183,10 @@ CREATE TABLE Gasto (
 );
 
 
+INSERT INTO cliente (nombre, documento, telefono, correo, direccion)
+VALUES 
+('Laura Gómez', '1003456789', '3124567890', 'laura.gomez@gmail.com', 'Cra 45 #12-34'),
+('Carlos Pérez', '1009876543', '3109876543', 'carlos.perez@hotmail.com', 'Calle 10 #25-67');
 
 
 -- Procedimiento almacenados
