@@ -181,3 +181,23 @@ CREATE TABLE Gasto (
     id_empleado INT,
     FOREIGN KEY (id_empleado) REFERENCES Empleado(id_empleado)
 );
+
+
+
+
+-- Procedimiento almacenados
+
+-- PAra cliente: 
+DELIMITER $$
+CREATE PROCEDURE proc_select_clientes()
+BEGIN
+    SELECT 
+        id_cliente,
+        nombre,
+        documento,
+        telefono,
+        correo,
+        direccion
+    FROM Cliente;
+END$$
+DELIMITER ;
