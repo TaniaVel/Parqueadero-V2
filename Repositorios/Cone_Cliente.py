@@ -92,7 +92,7 @@ class Conexion_Cliente(Conexion):
             conexion.commit()
 
             if cursor.rowcount == 0:
-                print(f"\nEl cliente con ID {cliente.GetIdCliente()} no existe. No se actualizó información.")
+                print(f"\nEl cliente con ID {cliente.GetIdCliente()} no existe o no hubo cambios. No se actualizó información.")
             else:
                 print(f"\nCliente ID {cliente.GetIdCliente()} actualizado correctamente")
 
@@ -104,8 +104,6 @@ class Conexion_Cliente(Conexion):
                 cursor.close()
             if conexion:
                 conexion.close()
-
-
 
 
     def EliminarCliente(self, id_cliente: int):

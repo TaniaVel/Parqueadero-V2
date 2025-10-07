@@ -1,4 +1,4 @@
-class EntradaSalida:
+class Entradasalida:
     id_registro: int = 0
     id_vehiculo: int = 0
     id_empleado: int = 0
