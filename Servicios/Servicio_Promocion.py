@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import promociones_to_json
 
 class Servicio_Promocion:
 
-    # ✅ GET - cargar promociones
+    # GET - cargar promociones
     def CargarPromociones(self) -> dict:
 
         conexion = Conexion_Promocion()
@@ -11,7 +11,7 @@ class Servicio_Promocion:
 
         return promociones_to_json(lista)
 
-    # ✅ POST - insertar promoción
+    # POST - insertar promoción
     def InsertarPromocion(self, data: dict):
 
         conexion = Conexion_Promocion()
@@ -19,7 +19,7 @@ class Servicio_Promocion:
 
         return "Promoción registrada correctamente"
 
-    # ✅ PUT - actualizar promoción
+    # PUT - actualizar promoción
     def ActualizarPromocion(self, data: dict):
 
         conexion = Conexion_Promocion()
@@ -30,7 +30,7 @@ class Servicio_Promocion:
 
         return "Promoción actualizada correctamente"
 
-    # ✅ DELETE - eliminar promoción
+    # DELETE - eliminar promoción
     def EliminarPromocion(self, id_promocion: int):
 
         conexion = Conexion_Promocion()
@@ -38,7 +38,7 @@ class Servicio_Promocion:
 
         return "Promoción eliminada correctamente"
 
-    # ✅ Método interno para crear entidad
+    # Método interno para crear entidad
     def __crear_promocion(self, data):
 
         from Entidades.Promocion import Promocion

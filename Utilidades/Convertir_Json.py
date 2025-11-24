@@ -1,7 +1,3 @@
-# Utilidades/convertir_json.py
-
-
-# Utilidades/Convertir_Json.py
 
 def clientes_to_json(lista):
     resultado = []

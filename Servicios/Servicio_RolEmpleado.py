@@ -3,14 +3,14 @@ from Utilidades.Convertir_Json import roles_to_json
 
 class Servicio_RolEmpleado:
 
-    # ✅ GET - Cargar roles
+    # GET - Cargar roles
     def CargarRoles(self) -> dict:
         conexion = Conexion_RolEmpleado()
         lista = conexion.CargarRoles()
 
         return roles_to_json(lista)
 
-    # ✅ POST - Insertar rol
+    #  POST - Insertar rol
     def InsertarRol(self, data: dict):
 
         conexion = Conexion_RolEmpleado()
@@ -18,7 +18,7 @@ class Servicio_RolEmpleado:
 
         return "Rol insertado correctamente"
 
-    # ✅ PUT - Actualizar rol
+    #  PUT - Actualizar rol
     def ActualizarRol(self, data: dict):
 
         conexion = Conexion_RolEmpleado()
@@ -29,7 +29,7 @@ class Servicio_RolEmpleado:
 
         return "Rol actualizado correctamente"
 
-    # ✅ DELETE - Eliminar rol
+    #  DELETE - Eliminar rol
     def EliminarRol(self, id_rol: int):
 
         conexion = Conexion_RolEmpleado()
@@ -37,7 +37,7 @@ class Servicio_RolEmpleado:
 
         return "Rol eliminado correctamente"
 
-    # ✅ Método interno para crear entidad RolEmpleado
+    #  Método interno para crear entidad RolEmpleado
     def __crear_rol(self, data):
 
         from Entidades.RolEmpleado import RolEmpleado

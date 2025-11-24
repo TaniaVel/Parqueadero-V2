@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import incidentes_to_json
 
 class Servicio_Incidente:
 
-    # ✅ GET - Cargar incidentes
+    #  GET - Cargar incidentes
     def CargarIncidentes(self) -> dict:
 
         conexion = Conexion_Incidente()
@@ -11,7 +11,7 @@ class Servicio_Incidente:
 
         return incidentes_to_json(lista)
 
-    # ✅ POST - Insertar incidente
+    #  POST - Insertar incidente
     def InsertarIncidente(self, data: dict):
 
         conexion = Conexion_Incidente()
@@ -19,7 +19,7 @@ class Servicio_Incidente:
 
         return "Incidente registrado correctamente"
 
-    # ✅ PUT - Actualizar incidente
+    #  PUT - Actualizar incidente
     def ActualizarIncidente(self, data: dict):
 
         conexion = Conexion_Incidente()
@@ -30,7 +30,7 @@ class Servicio_Incidente:
 
         return "Incidente actualizado correctamente"
 
-    # ✅ DELETE - Eliminar incidente
+    # DELETE - Eliminar incidente
     def EliminarIncidente(self, id_incidente: int):
 
         conexion = Conexion_Incidente()
@@ -38,7 +38,7 @@ class Servicio_Incidente:
 
         return "Incidente eliminado correctamente"
 
-    # ✅ Método interno para crear entidad Incidente
+    # Método interno para crear entidad Incidente
     def __crear_incidente(self, data):
 
         from Entidades.Incidente import Incidente

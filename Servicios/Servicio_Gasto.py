@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import gastos_to_json
 
 class Servicio_Gasto:
 
-    # ✅ GET - Cargar gastos
+    # GET - Cargar gastos
     def CargarGastos(self) -> dict:
 
         conexion = Conexion_Gasto()
@@ -11,7 +11,7 @@ class Servicio_Gasto:
 
         return gastos_to_json(lista)
 
-    # ✅ POST - Insertar gasto
+    # POST - Insertar gasto
     def InsertarGasto(self, data: dict):
 
         conexion = Conexion_Gasto()
@@ -19,7 +19,7 @@ class Servicio_Gasto:
 
         return "Gasto registrado correctamente"
 
-    # ✅ PUT - Actualizar gasto
+    # PUT - Actualizar gasto
     def ActualizarGasto(self, data: dict):
 
         conexion = Conexion_Gasto()
@@ -30,7 +30,7 @@ class Servicio_Gasto:
 
         return "Gasto actualizado correctamente"
 
-    # ✅ DELETE - Eliminar gasto
+    # DELETE - Eliminar gasto
     def EliminarGasto(self, id_gasto: int):
 
         conexion = Conexion_Gasto()
@@ -38,7 +38,7 @@ class Servicio_Gasto:
 
         return "Gasto eliminado correctamente"
 
-    # ✅ Método interno para crear entidad Gasto
+    # Método  para crear Gasto
     def __crear_gasto(self, data):
 
         from Entidades.Gasto import Gasto

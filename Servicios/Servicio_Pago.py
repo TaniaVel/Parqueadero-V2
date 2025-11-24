@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import pagos_to_json
 
 class Servicio_Pago:
 
-    # ✅ GET - Cargar pagos
+    #GET - Cargar pagos
     def CargarPagos(self) -> dict:
 
         conexion = Conexion_Pago()
@@ -11,7 +11,7 @@ class Servicio_Pago:
 
         return pagos_to_json(lista)
 
-    # ✅ POST - Insertar pago
+    # POST - Insertar pago
     def InsertarPago(self, data: dict):
 
         conexion = Conexion_Pago()
@@ -19,7 +19,7 @@ class Servicio_Pago:
 
         return "Pago registrado correctamente"
 
-    # ✅ PUT - Actualizar pago
+    # PUT - Actualizar pago
     def ActualizarPago(self, data: dict):
 
         conexion = Conexion_Pago()
@@ -30,7 +30,7 @@ class Servicio_Pago:
 
         return "Pago actualizado correctamente"
 
-    # ✅ DELETE - Eliminar pago
+    # DELETE - Eliminar pago
     def EliminarPago(self, id_pago: int):
 
         conexion = Conexion_Pago()
@@ -38,7 +38,7 @@ class Servicio_Pago:
 
         return "Pago eliminado correctamente"
 
-    # ✅ Método interno para crear entidad Pago
+    # Método interno para crear entidad Pago
     def __crear_pago(self, data):
 
         from Entidades.Pago import Pago

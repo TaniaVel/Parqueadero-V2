@@ -3,14 +3,14 @@ from Utilidades.Convertir_Json import tarifas_to_json
 
 class Servicio_Tarifa:
 
-    # ✅ GET - Cargar tarifas
+    # GET - Cargar tarifas
     def CargarTarifas(self) -> dict:
         conexion = Conexion_Tarifa()
         lista = conexion.CargarTarifas()
 
         return tarifas_to_json(lista)
 
-    # ✅ POST - Insertar tarifa
+    # POST - Insertar tarifa
     def InsertarTarifa(self, data: dict):
 
         conexion = Conexion_Tarifa()
@@ -18,7 +18,7 @@ class Servicio_Tarifa:
 
         return "Tarifa insertada correctamente"
 
-    # ✅ PUT - Actualizar tarifa
+    # PUT - Actualizar tarifa
     def ActualizarTarifa(self, data: dict):
 
         conexion = Conexion_Tarifa()
@@ -29,7 +29,7 @@ class Servicio_Tarifa:
 
         return "Tarifa actualizada correctamente"
 
-    # ✅ DELETE - Eliminar tarifa
+    # DELETE - Eliminar tarifa
     def EliminarTarifa(self, id_tarifa: int):
 
         conexion = Conexion_Tarifa()
@@ -37,7 +37,7 @@ class Servicio_Tarifa:
 
         return "Tarifa eliminada correctamente"
 
-    # ✅ Método interno
+    # Método interno
     def __crear_tarifa(self, data):
 
         from Entidades.Tarifa import Tarifa

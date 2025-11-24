@@ -1,5 +1,10 @@
+# app.py
+
 import flask
 import json
+from Seguridad.auth import token_required
+from Seguridad.TokenService import TokenService
+
 from Servicios.Servicio_Cliente import Servicio_Cliente
 from Servicios.Servicio_Vehiculo import Servicio_Vehiculo
 from Servicios.Servicio_Empleado import Servicio_Empleado
@@ -16,9 +21,23 @@ from Servicios.Servicio_Incidente import Servicio_Incidente
 from Servicios.Servicio_Membresia import Servicio_Membresia
 from Servicios.Servicio_Promocion import Servicio_Promocion
 
+
 app = flask.Flask(__name__)
 
-#GET - Cargar clientes
+# =========================================
+# Endpoint para generar TOKEN de ADMIN
+# =========================================
+
+token_service = TokenService()
+
+#Generar el token
+
+@app.route("/token/generar", methods=["POST"])
+def generar_token():
+    payload = flask.request.json
+    return token_service.generar_token(payload)
+
+#  GET - Cargar clientes
 @app.route("/main3/Cargarclientes/<string:entrada>", methods=["GET"])
 def api_cargar_clientes(entrada: str):
 
@@ -39,7 +58,30 @@ def api_cargar_clientes(entrada: str):
         respuesta["Error"] = str(ex)
         return flask.jsonify(respuesta)
 
-#POST - Insertar cliente
+
+# GET - Cargar clientes -con datos sensibles encriptados
+@app.route("/main3/Cargarclientes2/<string:entrada>", methods=["GET"])
+def api_cargar_clientes2(entrada: str):
+
+    respuesta = {}
+    try:
+        entrada = entrada.replace("'", '"')
+        datos = json.loads(entrada)
+
+        servicio = Servicio_Cliente()
+        respuesta["Clientes"] = servicio.CargarClientes2()
+        respuesta["Respuesta"] = "OK"
+        respuesta["Entrada"] = datos
+
+        return flask.jsonify(respuesta)
+
+    except Exception as ex:
+        respuesta["Respuesta"] = "Error"
+        respuesta["Error"] = str(ex)
+        return flask.jsonify(respuesta)
+    
+
+# POST - Insertar cliente
 @app.route("/main3/InsertarCliente", methods=["POST"])
 def api_insertar_cliente():
 
@@ -125,7 +167,8 @@ def api_eliminar_vehiculo(id_vehiculo: int):
 # TIPO VEHÍCULO
 # ===========================================================
 
-#GET - Cargar tipo de vehiculos
+from Servicios.Servicio_TipoVehiculo import Servicio_TipoVehiculo
+
 @app.route("/main3/CargarTipoVehiculo/<string:entrada>", methods=["GET"])
 def api_cargar_tipovehiculo(entrada: str):
 
@@ -146,7 +189,7 @@ def api_cargar_tipovehiculo(entrada: str):
         respuesta["Error"] = str(ex)
         return flask.jsonify(respuesta)
 
-# POST - Insertar tipo  de vehículo
+# POST - Insertar vehículo
 @app.route("/main3/InsertarTipoVehiculo", methods=["POST"])
 def api_insertar_tipovehiculo():
 
@@ -156,7 +199,7 @@ def api_insertar_tipovehiculo():
 
     return flask.jsonify({"Respuesta": mensaje})
 
-# PUT - Actualizar tipo de vehículo
+# PUT - Actualizar vehículo
 @app.route("/main3/ActualizarTipoVehiculo", methods=["PUT"])
 def api_actualizar_tipovehiculo():
 
@@ -166,7 +209,7 @@ def api_actualizar_tipovehiculo():
 
     return flask.jsonify({"Respuesta": mensaje})
 
-# DELETE - Eliminar tipo de vehículo
+# DELETE - Eliminar vehículo
 @app.route("/main3/EliminarTipoVehiculo/<int:id_tipo>", methods=["DELETE"])
 def api_eliminar_tipovehiculo(id_tipo: int):
 
@@ -180,7 +223,7 @@ def api_eliminar_tipovehiculo(id_tipo: int):
 # EMPLEADO
 # ===========================================================
 
-#GET - Cargar lista de empleados
+#GET - Cargar listado de empleados
 @app.route("/main3/CargarEmpleados/<string:entrada>", methods=["GET"])
 def api_cargar_empleados(entrada: str):
 
@@ -200,7 +243,6 @@ def api_cargar_empleados(entrada: str):
         respuesta["Respuesta"] = "Error"
         respuesta["Error"] = str(ex)
         return flask.jsonify(respuesta)
-    
 
 # POST - Insertar empleado
 @app.route("/main3/InsertarEmpleado", methods=["POST"])
@@ -222,7 +264,7 @@ def api_actualizar_empleado():
 
     return flask.jsonify({"Respuesta": mensaje})
 
-# DELETE - Eliminar empleado
+#  DELETE - Eliminar empleado
 @app.route("/main3/EliminarEmpleado/<int:id_empleado>", methods=["DELETE"])
 def api_eliminar_empleado(id_empleado: int):
 
@@ -234,6 +276,7 @@ def api_eliminar_empleado(id_empleado: int):
 # ===========================================================
 # ROL EMPLEADO
 # ===========================================================
+
 #GET - Cargar lista de roles de empleado
 @app.route("/main3/CargarRolEmpl/<string:entrada>", methods=["GET"])
 def api_cargar_roles(entrada: str):
@@ -254,6 +297,7 @@ def api_cargar_roles(entrada: str):
         respuesta["Respuesta"] = "Error"
         respuesta["Error"] = str(ex)
         return flask.jsonify(respuesta)
+    
 
 # POST - Insertar rol de empleado
 @app.route("/main3/InsertarRolEmpl", methods=["POST"])
@@ -265,7 +309,7 @@ def api_insertar_rol():
 
     return flask.jsonify({"Respuesta": mensaje})
 
-# PUT - Actualizar rol de empleado
+#  PUT - Actualizar rol
 @app.route("/main3/ActualizarRolEmpl", methods=["PUT"])
 def api_actualizar_rol():
 
@@ -275,7 +319,7 @@ def api_actualizar_rol():
 
     return flask.jsonify({"Respuesta": mensaje})
 
-# DELETE - Eliminar rol de empleado
+#  DELETE - Eliminar rol
 @app.route("/main3/EliminarRolEmpl/<int:id_rol>", methods=["DELETE"])
 def api_eliminar_rol(id_rol: int):
 
@@ -310,7 +354,7 @@ def api_cargar_tarifas(entrada: str):
         respuesta["Error"] = str(ex)
         return flask.jsonify(respuesta)
 
-# POST - Insertar tarifa
+#GET - Cargar lista de tarifas
 @app.route("/main3/InsertarTarifa", methods=["POST"])
 def api_insertar_tarifa():
 
@@ -341,9 +385,11 @@ def api_eliminar_tarifa(id_tarifa: int):
 
 
 # ===========================================================
-# ENTRADA / SALIDA
+#  ENTRADA / SALIDA
 # ===========================================================
+
 # GET - Cargar lista de registros
+
 @app.route("/main3/CargarEntradaSalida/<string:entrada>", methods=["GET"])
 def api_cargar_entradasalida(entrada: str):
 
@@ -394,7 +440,7 @@ def api_eliminar_entradasalida(id_registro: int):
     return flask.jsonify({"Respuesta": mensaje})
 
 # ===========================================================
-# METODO DE PAGO
+#  METODO DE PAGO
 # ===========================================================
 
 # GET - Cargar métodos de pago
@@ -418,7 +464,7 @@ def api_cargar_metodos(entrada: str):
         respuesta["Error"] = str(ex)
         return flask.jsonify(respuesta)
 
-# POST - Insertar método
+# GET - Cargar métodos de pago
 @app.route("/main3/InsertarMetodo", methods=["POST"])
 def api_insertar_metodo():
 
@@ -450,7 +496,9 @@ def api_eliminar_metodo(id_metodo: int):
 # ===========================================================
 # PAGO
 # ===========================================================
+
 # GET - Cargar listado de pagos
+
 @app.route("/main3/CargarPagos/<string:entrada>", methods=["GET"])
 def api_cargar_pagos(entrada: str):
 
@@ -503,7 +551,9 @@ def api_eliminar_pago(id_pago: int):
 # ===========================================================
 # FACTURA
 # ===========================================================
+
 # GET - Cargar lista de facturas
+
 @app.route("/main3/CargarFacturas/<string:entrada>", methods=["GET"])
 def api_cargar_facturas(entrada: str):
 
@@ -558,6 +608,7 @@ def api_eliminar_factura(id_factura: int):
 # ===========================================================
 # GASTO
 # ===========================================================
+
 # GET - Cargar lista de gastos
 @app.route("/main3/CargarGastos/<string:entrada>", methods=["GET"])
 def api_cargar_gastos(entrada: str):
@@ -609,8 +660,9 @@ def api_eliminar_gasto(id_gasto: int):
     return flask.jsonify({"Respuesta": mensaje})
 
 # ===========================================================
-#  MULTA
+# MULTA
 # ===========================================================
+
 # GET - Cargar lista de multas
 @app.route("/main3/CargarMultas/<string:entrada>", methods=["GET"])
 def api_cargar_multas(entrada: str):
@@ -663,8 +715,9 @@ def api_eliminar_multa(id_multa: int):
 
 
 # ===========================================================
-# INCIDENTE
+#  INCIDENTE
 # ===========================================================
+
 # GET - Cargar lista de incidentes
 @app.route("/main3/CargarIncidentes/<string:entrada>", methods=["GET"])
 def api_cargar_incidentes(entrada: str):
@@ -707,7 +760,6 @@ def api_actualizar_incidente():
     return flask.jsonify({"Respuesta": mensaje})
 
 # DELETE - Eliminar incidente
-
 @app.route("/main3/EliminarIncidente/<int:id_incidente>", methods=["DELETE"])
 def api_eliminar_incidente(id_incidente: int):
 
@@ -717,8 +769,9 @@ def api_eliminar_incidente(id_incidente: int):
     return flask.jsonify({"Respuesta": mensaje})
 
 # ===========================================================
-# MEMBRESIA
+#  MEMBRESIA
 # ===========================================================
+
 # GET - Cargar lista de membresias
 @app.route("/main3/CargarMembresias/<string:entrada>", methods=["GET"])
 def api_cargar_membresias(entrada: str):
@@ -773,6 +826,7 @@ def api_eliminar_membresia(id_membresia: int):
 # ===========================================================
 # PROMOCION
 # ===========================================================
+
 # GET - Cargar lista de promociones
 @app.route("/main3/CargarPromociones/<string:entrada>", methods=["GET"])
 def api_cargar_promociones(entrada: str):

@@ -1,7 +1,6 @@
 
 class ClienteJSON:
 
-    @staticmethod
     def Convertir(cliente) -> dict:
         return {
             "IdCliente": cliente.GetIdCliente(),

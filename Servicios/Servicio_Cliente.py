@@ -1,7 +1,19 @@
 from Repositorios.Cone_Cliente import Conexion_Cliente
 from Utilidades.Convertir_Json import clientes_to_json
+from Seguridad.encriptador_datos import encrypt_list
 
 class Servicio_Cliente:
+
+    # GET - Cargar lista Clientes encriptando datos sensibles
+    def CargarClientes2(self) -> dict:
+        conexion = Conexion_Cliente()
+        lista = conexion.CargarClientes()
+        json_data = clientes_to_json(lista)
+        json_data = encrypt_list(json_data)
+        
+        return json_data
+
+    # GET - Cargar lista Clientes
 
     def CargarClientes(self) -> dict:
         conexion = Conexion_Cliente()
@@ -9,6 +21,7 @@ class Servicio_Cliente:
 
         return clientes_to_json(lista)
 
+    # POST - Insertar cLIENTE
     def InsertarCliente(self, data: dict):
 
         conexion = Conexion_Cliente()
@@ -16,6 +29,7 @@ class Servicio_Cliente:
 
         return "Cliente insertado correctamente"
 
+    # PUT - Actualizar Cliente
     def ActualizarCliente(self, data: dict):
 
         conexion = Conexion_Cliente()
@@ -25,14 +39,15 @@ class Servicio_Cliente:
         conexion.ActualizarCliente(cliente)
         return "Cliente actualizado correctamente"
 
+    # DELETE - Eliminar empleado
     def EliminarCliente(self, id_cliente: int):
 
         conexion = Conexion_Cliente()
         conexion.EliminarCliente(id_cliente)
 
         return "Cliente eliminado correctamente"
-
-    # ✅ Método interno para crear entidad Cliente
+    
+     # Método Crear empleado   
     def __crear_cliente(self, data):
 
         from Entidades.Cliente import Cliente

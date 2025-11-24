@@ -3,14 +3,14 @@ from Utilidades.Convertir_Json import vehiculos_to_json
 
 class Servicio_Vehiculo:
 
-    # ✅ GET - Cargar vehículos
+    # GET - Cargar vehículos
     def CargarVehiculos(self) -> dict:
         conexion = Conexion_Vehiculo()
         lista = conexion.CargarVehiculos()
 
         return vehiculos_to_json(lista)
 
-    # ✅ POST - Insertar vehículo
+    # POST - Insertar vehículo
     def InsertarVehiculo(self, data: dict):
 
         conexion = Conexion_Vehiculo()
@@ -18,7 +18,7 @@ class Servicio_Vehiculo:
 
         return "Vehículo insertado correctamente"
 
-    # ✅ PUT - Actualizar vehículo
+    # PUT - Actualizar vehículo
     def ActualizarVehiculo(self, data: dict):
 
         conexion = Conexion_Vehiculo()
@@ -29,7 +29,7 @@ class Servicio_Vehiculo:
 
         return "Vehículo actualizado correctamente"
 
-    # ✅ DELETE - Eliminar vehículo
+    # DELETE - Eliminar vehículo
     def EliminarVehiculo(self, id_vehiculo: int):
 
         conexion = Conexion_Vehiculo()
@@ -37,7 +37,7 @@ class Servicio_Vehiculo:
 
         return "Vehículo eliminado correctamente"
 
-    # ✅ Método interno para crear entidad Vehiculo
+    # Método  para crear  Vehiculo
     def __crear_vehiculo(self, data):
 
         from Entidades.Vehiculo import Vehiculo

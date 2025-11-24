@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import metodos_to_json
 
 class Servicio_MetodoPago:
 
-    # ✅ GET - Cargar métodos
+    # GET - Cargar métodos
     def CargarMetodos(self) -> dict:
 
         conexion = Conexion_MetodoPago()
@@ -11,7 +11,7 @@ class Servicio_MetodoPago:
 
         return metodos_to_json(lista)
 
-    # ✅ POST - Insertar método
+    # POST - Insertar método
     def InsertarMetodo(self, data: dict):
 
         conexion = Conexion_MetodoPago()
@@ -19,7 +19,7 @@ class Servicio_MetodoPago:
 
         return "Método de pago insertado correctamente"
 
-    # ✅ PUT - Actualizar método
+    # PUT - Actualizar método
     def ActualizarMetodo(self, data: dict):
 
         conexion = Conexion_MetodoPago()
@@ -30,7 +30,7 @@ class Servicio_MetodoPago:
 
         return "Método de pago actualizado correctamente"
 
-    # ✅ DELETE - Eliminar método
+    # DELETE - Eliminar método
     def EliminarMetodo(self, id_metodo: int):
 
         conexion = Conexion_MetodoPago()
@@ -38,7 +38,7 @@ class Servicio_MetodoPago:
 
         return "Método de pago eliminado correctamente"
 
-    # ✅ Creador interno
+    # Crear método de pago
     def __crear_metodo(self, data):
 
         from Entidades.MetodoPago import MetodoPago

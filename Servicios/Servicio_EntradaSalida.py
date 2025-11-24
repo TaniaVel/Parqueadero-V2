@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import entradasalida_to_json
 
 class Servicio_EntradaSalida:
 
-    # ✅ GET - Cargar todos los registros
+    # GET - Cargar todos los registros
     def CargarRegistros(self) -> dict:
 
         conexion = Conexion_Registro()
@@ -11,7 +11,7 @@ class Servicio_EntradaSalida:
 
         return entradasalida_to_json(lista)
 
-    # ✅ POST - Insertar registro (entrada)
+    # POST - Insertar registro
     def InsertarRegistro(self, data: dict):
 
         conexion = Conexion_Registro()
@@ -19,7 +19,7 @@ class Servicio_EntradaSalida:
 
         return "Registro de entrada creado correctamente"
 
-    # ✅ PUT - Actualizar registro completo
+    # PUT - Actualizar registro
     def ActualizarRegistro(self, data: dict):
 
         conexion = Conexion_Registro()
@@ -30,7 +30,7 @@ class Servicio_EntradaSalida:
 
         return "Registro actualizado correctamente"
 
-    # ✅ DELETE - Eliminar registro
+    # DELETE - Eliminar registro
     def EliminarRegistro(self, id_registro: int):
 
         conexion = Conexion_Registro()
@@ -38,7 +38,7 @@ class Servicio_EntradaSalida:
 
         return "Registro eliminado correctamente"
 
-    # ✅ Método interno para insertar entrada
+    # Método para registrar entrada
     def __crear_registro_entrada(self, data):
 
         from Entidades.Entradasalida import Entradasalida
@@ -51,7 +51,7 @@ class Servicio_EntradaSalida:
 
         return reg
 
-    # ✅ Método interno para actualizar registro completo
+    #  Método interno para  registro completo
     def __crear_registro(self, data):
 
         from Entidades.Entradasalida import Entradasalida

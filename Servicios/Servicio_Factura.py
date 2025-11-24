@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import facturas_to_json
 
 class Servicio_Factura:
 
-    # ✅ GET - Cargar facturas
+    #  GET - Cargar facturas
     def CargarFacturas(self) -> dict:
 
         conexion = Conexion_Factura()
@@ -11,7 +11,7 @@ class Servicio_Factura:
 
         return facturas_to_json(lista)
 
-    # ✅ POST - Insertar factura
+    #  POST - Insertar factura
     def InsertarFactura(self, data: dict):
 
         conexion = Conexion_Factura()
@@ -19,7 +19,7 @@ class Servicio_Factura:
 
         return "Factura registrada correctamente"
 
-    # ✅ PUT - Actualizar factura
+    #  PUT - Actualizar factura
     def ActualizarFactura(self, data: dict):
 
         conexion = Conexion_Factura()
@@ -30,7 +30,7 @@ class Servicio_Factura:
 
         return "Factura actualizada correctamente"
 
-    # ✅ DELETE - Eliminar factura
+    # DELETE - Eliminar factura
     def EliminarFactura(self, id_factura: int):
 
         conexion = Conexion_Factura()
@@ -38,7 +38,7 @@ class Servicio_Factura:
 
         return "Factura eliminada correctamente"
 
-    # ✅ Método interno para crear entidad Factura
+    # Método para crear  Factura
     def __crear_factura(self, data):
 
         from Entidades.Factura import Factura

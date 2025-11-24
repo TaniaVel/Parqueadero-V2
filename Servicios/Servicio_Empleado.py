@@ -3,14 +3,14 @@ from Utilidades.Convertir_Json import empleados_to_json
 
 class Servicio_Empleado:
 
-    # ✅ GET - Cargar empleados
+    # GET - Cargar lista empleados
     def CargarEmpleados(self) -> dict:
         conexion = Conexion_Empleado()
         lista = conexion.CargarEmpleados()
 
         return empleados_to_json(lista)
 
-    # ✅ POST - Insertar empleado
+    # POST - Insertar empleado
     def InsertarEmpleado(self, data: dict):
 
         conexion = Conexion_Empleado()
@@ -18,7 +18,7 @@ class Servicio_Empleado:
 
         return "Empleado insertado correctamente"
 
-    # ✅ PUT - Actualizar empleado
+    # PUT - Actualizar empleado
     def ActualizarEmpleado(self, data: dict):
 
         conexion = Conexion_Empleado()
@@ -29,7 +29,7 @@ class Servicio_Empleado:
 
         return "Empleado actualizado correctamente"
 
-    # ✅ DELETE - Eliminar empleado
+    # DELETE - Eliminar empleado
     def EliminarEmpleado(self, id_empleado: int):
 
         conexion = Conexion_Empleado()
@@ -37,7 +37,7 @@ class Servicio_Empleado:
 
         return "Empleado eliminado correctamente"
 
-    # ✅ Método interno para crear entidad Empleado
+    # Método Crear empleado
     def __crear_empleado(self, data):
 
         from Entidades.Empleado import Empleado

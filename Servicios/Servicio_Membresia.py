@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import membresias_to_json
 
 class Servicio_Membresia:
 
-    # ✅ GET - cargar membreías
+    #  GET - cargar membreías
     def CargarMembresias(self) -> dict:
 
         conexion = Conexion_Membresia()
@@ -11,7 +11,7 @@ class Servicio_Membresia:
 
         return membresias_to_json(lista)
 
-    # ✅ POST - insertar membresía
+    #  POST - insertar membresía
     def InsertarMembresia(self, data: dict):
 
         conexion = Conexion_Membresia()
@@ -19,7 +19,7 @@ class Servicio_Membresia:
 
         return "Membresía registrada correctamente"
 
-    # ✅ PUT - actualizar membresía
+    #  PUT - actualizar membresía
     def ActualizarMembresia(self, data: dict):
 
         conexion = Conexion_Membresia()
@@ -30,7 +30,7 @@ class Servicio_Membresia:
 
         return "Membresía actualizada correctamente"
 
-    # ✅ DELETE - eliminar membresía
+    # DELETE - eliminar membresía
     def EliminarMembresia(self, id_membresia: int):
 
         conexion = Conexion_Membresia()
@@ -38,7 +38,7 @@ class Servicio_Membresia:
 
         return "Membresía eliminada correctamente"
 
-    # ✅ Método interno para crear entidad
+    # Método interno para crear entidad
     def __crear_membresia(self, data):
 
         from Entidades.Membresia import Membresia

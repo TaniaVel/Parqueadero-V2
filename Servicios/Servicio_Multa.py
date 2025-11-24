@@ -3,7 +3,7 @@ from Utilidades.Convertir_Json import multas_to_json
 
 class Servicio_Multa:
 
-    # ✅ GET - Cargar multas
+    # GET - Cargar multas
     def CargarMultas(self) -> dict:
 
         conexion = Conexion_Multa()
@@ -11,7 +11,7 @@ class Servicio_Multa:
 
         return multas_to_json(lista)
 
-    # ✅ POST - Insertar multa
+    # POST - Insertar multa
     def InsertarMulta(self, data: dict):
 
         conexion = Conexion_Multa()
@@ -19,7 +19,7 @@ class Servicio_Multa:
 
         return "Multa registrada correctamente"
 
-    # ✅ PUT - Actualizar multa
+    # PUT - Actualizar multa
     def ActualizarMulta(self, data: dict):
 
         conexion = Conexion_Multa()
@@ -30,7 +30,7 @@ class Servicio_Multa:
 
         return "Multa actualizada correctamente"
 
-    # ✅ DELETE - Eliminar multa
+    # DELETE - Eliminar multa
     def EliminarMulta(self, id_multa: int):
 
         conexion = Conexion_Multa()
@@ -38,7 +38,7 @@ class Servicio_Multa:
 
         return "Multa eliminada correctamente"
 
-    # ✅ Método interno para crear entidad Multa
+    # Método  para crear Multa
     def __crear_multa(self, data):
 
         from Entidades.Multa import Multa
