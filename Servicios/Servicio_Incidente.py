@@ -17,7 +17,7 @@ class Servicio_Incidente:
         conexion = Conexion_Incidente()
         conexion.InsertarIncidente(self.__crear_incidente(data))
 
-        return "Incidente registrado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     #  PUT - Actualizar incidente
     def ActualizarIncidente(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_Incidente:
 
         conexion.ActualizarIncidente(incidente)
 
-        return "Incidente actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar incidente
     def EliminarIncidente(self, id_incidente: int):
@@ -36,7 +36,7 @@ class Servicio_Incidente:
         conexion = Conexion_Incidente()
         conexion.EliminarIncidente(id_incidente)
 
-        return "Incidente eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método interno para crear entidad Incidente
     def __crear_incidente(self, data):

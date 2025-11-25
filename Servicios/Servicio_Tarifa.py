@@ -16,7 +16,7 @@ class Servicio_Tarifa:
         conexion = Conexion_Tarifa()
         conexion.InsertarTarifa(self.__crear_tarifa(data))
 
-        return "Tarifa insertada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar tarifa
     def ActualizarTarifa(self, data: dict):
@@ -27,7 +27,7 @@ class Servicio_Tarifa:
 
         conexion.ActualizarTarifa(tarifa)
 
-        return "Tarifa actualizada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar tarifa
     def EliminarTarifa(self, id_tarifa: int):
@@ -35,7 +35,7 @@ class Servicio_Tarifa:
         conexion = Conexion_Tarifa()
         conexion.EliminarTarifa(id_tarifa)
 
-        return "Tarifa eliminada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método interno
     def __crear_tarifa(self, data):

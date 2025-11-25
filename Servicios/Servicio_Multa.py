@@ -17,7 +17,7 @@ class Servicio_Multa:
         conexion = Conexion_Multa()
         conexion.InsertarMulta(self.__crear_multa(data))
 
-        return "Multa registrada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar multa
     def ActualizarMulta(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_Multa:
 
         conexion.ActualizarMulta(multa)
 
-        return "Multa actualizada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar multa
     def EliminarMulta(self, id_multa: int):
@@ -36,7 +36,7 @@ class Servicio_Multa:
         conexion = Conexion_Multa()
         conexion.EliminarMulta(id_multa)
 
-        return "Multa eliminada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método  para crear Multa
     def __crear_multa(self, data):

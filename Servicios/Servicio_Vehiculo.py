@@ -16,7 +16,7 @@ class Servicio_Vehiculo:
         conexion = Conexion_Vehiculo()
         conexion.InsertarVehiculo(self.__crear_vehiculo(data))
 
-        return "Vehículo insertado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar vehículo
     def ActualizarVehiculo(self, data: dict):
@@ -27,7 +27,7 @@ class Servicio_Vehiculo:
 
         conexion.ActualizarVehiculo(vehiculo)
 
-        return "Vehículo actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar vehículo
     def EliminarVehiculo(self, id_vehiculo: int):
@@ -35,7 +35,7 @@ class Servicio_Vehiculo:
         conexion = Conexion_Vehiculo()
         conexion.EliminarVehiculo(id_vehiculo)
 
-        return "Vehículo eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método  para crear  Vehiculo
     def __crear_vehiculo(self, data):

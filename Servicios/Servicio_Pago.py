@@ -17,7 +17,7 @@ class Servicio_Pago:
         conexion = Conexion_Pago()
         conexion.InsertarPago(self.__crear_pago(data))
 
-        return "Pago registrado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar pago
     def ActualizarPago(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_Pago:
 
         conexion.ActualizarPago(pago)
 
-        return "Pago actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar pago
     def EliminarPago(self, id_pago: int):
@@ -36,7 +36,7 @@ class Servicio_Pago:
         conexion = Conexion_Pago()
         conexion.EliminarPago(id_pago)
 
-        return "Pago eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método interno para crear entidad Pago
     def __crear_pago(self, data):

@@ -17,7 +17,7 @@ class Servicio_MetodoPago:
         conexion = Conexion_MetodoPago()
         conexion.InsertarMetodo(self.__crear_metodo(data))
 
-        return "Método de pago insertado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar método
     def ActualizarMetodo(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_MetodoPago:
 
         conexion.ActualizarMetodo(metodo)
 
-        return "Método de pago actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar método
     def EliminarMetodo(self, id_metodo: int):
@@ -36,7 +36,7 @@ class Servicio_MetodoPago:
         conexion = Conexion_MetodoPago()
         conexion.EliminarMetodo(id_metodo)
 
-        return "Método de pago eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Crear método de pago
     def __crear_metodo(self, data):

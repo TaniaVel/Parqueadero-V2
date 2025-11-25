@@ -16,7 +16,7 @@ class Servicio_Empleado:
         conexion = Conexion_Empleado()
         conexion.InsertarEmpleado(self.__crear_empleado(data))
 
-        return "Empleado insertado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar empleado
     def ActualizarEmpleado(self, data: dict):
@@ -27,7 +27,7 @@ class Servicio_Empleado:
 
         conexion.ActualizarEmpleado(empleado)
 
-        return "Empleado actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar empleado
     def EliminarEmpleado(self, id_empleado: int):
@@ -35,7 +35,7 @@ class Servicio_Empleado:
         conexion = Conexion_Empleado()
         conexion.EliminarEmpleado(id_empleado)
 
-        return "Empleado eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método Crear empleado
     def __crear_empleado(self, data):

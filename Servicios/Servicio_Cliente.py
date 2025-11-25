@@ -27,7 +27,7 @@ class Servicio_Cliente:
         conexion = Conexion_Cliente()
         conexion.InsertarCliente(self.__crear_cliente(data))
 
-        return "Cliente insertado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar Cliente
     def ActualizarCliente(self, data: dict):
@@ -37,7 +37,7 @@ class Servicio_Cliente:
         cliente.SetIdCliente(data["IdCliente"])
 
         conexion.ActualizarCliente(cliente)
-        return "Cliente actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar empleado
     def EliminarCliente(self, id_cliente: int):
@@ -45,7 +45,7 @@ class Servicio_Cliente:
         conexion = Conexion_Cliente()
         conexion.EliminarCliente(id_cliente)
 
-        return "Cliente eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
     
      # Método Crear empleado   
     def __crear_cliente(self, data):

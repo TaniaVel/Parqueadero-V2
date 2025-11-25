@@ -17,7 +17,7 @@ class Servicio_EntradaSalida:
         conexion = Conexion_Registro()
         conexion.InsertarRegistro(self.__crear_registro_entrada(data))
 
-        return "Registro de entrada creado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar registro
     def ActualizarRegistro(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_EntradaSalida:
 
         conexion.ActualizarRegistro(registro)
 
-        return "Registro actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar registro
     def EliminarRegistro(self, id_registro: int):
@@ -36,7 +36,7 @@ class Servicio_EntradaSalida:
         conexion = Conexion_Registro()
         conexion.EliminarRegistro(id_registro)
 
-        return "Registro eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método para registrar entrada
     def __crear_registro_entrada(self, data):

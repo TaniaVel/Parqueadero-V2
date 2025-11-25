@@ -17,7 +17,7 @@ class Servicio_Gasto:
         conexion = Conexion_Gasto()
         conexion.InsertarGasto(self.__crear_gasto(data))
 
-        return "Gasto registrado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - Actualizar gasto
     def ActualizarGasto(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_Gasto:
 
         conexion.ActualizarGasto(gasto)
 
-        return "Gasto actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar gasto
     def EliminarGasto(self, id_gasto: int):
@@ -36,7 +36,7 @@ class Servicio_Gasto:
         conexion = Conexion_Gasto()
         conexion.EliminarGasto(id_gasto)
 
-        return "Gasto eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método  para crear Gasto
     def __crear_gasto(self, data):

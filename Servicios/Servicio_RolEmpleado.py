@@ -16,7 +16,7 @@ class Servicio_RolEmpleado:
         conexion = Conexion_RolEmpleado()
         conexion.InsertarRol(self.__crear_rol(data))
 
-        return "Rol insertado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     #  PUT - Actualizar rol
     def ActualizarRol(self, data: dict):
@@ -27,7 +27,7 @@ class Servicio_RolEmpleado:
 
         conexion.ActualizarRol(rol)
 
-        return "Rol actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     #  DELETE - Eliminar rol
     def EliminarRol(self, id_rol: int):
@@ -35,7 +35,7 @@ class Servicio_RolEmpleado:
         conexion = Conexion_RolEmpleado()
         conexion.EliminarRol(id_rol)
 
-        return "Rol eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     #  Método interno para crear entidad RolEmpleado
     def __crear_rol(self, data):

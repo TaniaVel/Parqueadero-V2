@@ -1,3 +1,5 @@
+#se encarga de revisar si la persona que está intentando usar la API tiene un token válido.
+
 from functools import wraps
 from flask import request, jsonify
 

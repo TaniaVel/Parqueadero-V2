@@ -434,3 +434,34 @@ Content-Type: application/json
 }
 
 DELETE http://localhost:4040/main3/EliminarPromocion/1
+
+========================================
+CON TOKEN !!
+========================================
+En Power Shell: 
+Variables de entorno: 
+setx JWT_SECRET_KEY "MiClaveJWT123456"
+setx AES_SECRET_KEY "MiClaveAES123456"
+
+En Postman: 
+
+POST: http://localhost:4040/token/generar
+
+Generar token: 
+{
+"usuario_id": 1,
+"rol": "ADMIN"
+}
+
+-----------------------------
+
+GET - Datos cifrados
+http://localhost:4040/main3/Cargarclientes2/{}
+
+Necesario Token: 
+http://localhost:4040/main3/Cargarclientes/{}
+
+En el header:
+Authorization Bearer poner TOKEN
+
+----------------------------------------------------

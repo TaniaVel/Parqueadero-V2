@@ -17,7 +17,7 @@ class Servicio_Factura:
         conexion = Conexion_Factura()
         conexion.InsertarFactura(self.__crear_factura(data))
 
-        return "Factura registrada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     #  PUT - Actualizar factura
     def ActualizarFactura(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_Factura:
 
         conexion.ActualizarFactura(factura)
 
-        return "Factura actualizada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - Eliminar factura
     def EliminarFactura(self, id_factura: int):
@@ -36,7 +36,7 @@ class Servicio_Factura:
         conexion = Conexion_Factura()
         conexion.EliminarFactura(id_factura)
 
-        return "Factura eliminada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método para crear  Factura
     def __crear_factura(self, data):

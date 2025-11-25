@@ -1,4 +1,3 @@
-# app.py
 
 import flask
 import json
@@ -21,7 +20,6 @@ from Servicios.Servicio_Incidente import Servicio_Incidente
 from Servicios.Servicio_Membresia import Servicio_Membresia
 from Servicios.Servicio_Promocion import Servicio_Promocion
 
-
 app = flask.Flask(__name__)
 
 # =========================================
@@ -39,6 +37,7 @@ def generar_token():
 
 #  GET - Cargar clientes
 @app.route("/main3/Cargarclientes/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_clientes(entrada: str):
 
     respuesta = {}
@@ -83,6 +82,7 @@ def api_cargar_clientes2(entrada: str):
 
 # POST - Insertar cliente
 @app.route("/main3/InsertarCliente", methods=["POST"])
+@token_required
 def api_insertar_cliente():
 
     datos = flask.request.json
@@ -93,6 +93,7 @@ def api_insertar_cliente():
 
 # PUT - Actualizar cliente
 @app.route("/main3/ActualizarCliente", methods=["PUT"])
+@token_required
 def api_actualizar_cliente():
 
     datos = flask.request.json
@@ -103,6 +104,7 @@ def api_actualizar_cliente():
 
 # DELETE - Eliminar cliente
 @app.route("/main3/EliminarCliente/<int:id_cliente>", methods=["DELETE"])
+@token_required
 def api_eliminar_cliente(id_cliente: int):
 
     servicio = Servicio_Cliente()
@@ -115,6 +117,7 @@ def api_eliminar_cliente(id_cliente: int):
 
 # GET - Cargar vehículos
 @app.route("/main3/CargarVehiculos/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_vehiculos(entrada: str):
 
     respuesta = {}
@@ -136,6 +139,7 @@ def api_cargar_vehiculos(entrada: str):
 
 # POST - Insertar vehículo
 @app.route("/main3/InsertarVehiculo", methods=["POST"])
+@token_required
 def api_insertar_vehiculo():
 
     datos = flask.request.json
@@ -146,6 +150,7 @@ def api_insertar_vehiculo():
 
 # PUT - Actualizar vehículo
 @app.route("/main3/ActualizarVehiculo", methods=["PUT"])
+@token_required
 def api_actualizar_vehiculo():
 
     datos = flask.request.json
@@ -156,6 +161,7 @@ def api_actualizar_vehiculo():
 
 # DELETE - Eliminar vehículo
 @app.route("/main3/EliminarVehiculo/<int:id_vehiculo>", methods=["DELETE"])
+@token_required
 def api_eliminar_vehiculo(id_vehiculo: int):
 
     servicio = Servicio_Vehiculo()
@@ -167,9 +173,9 @@ def api_eliminar_vehiculo(id_vehiculo: int):
 # TIPO VEHÍCULO
 # ===========================================================
 
-from Servicios.Servicio_TipoVehiculo import Servicio_TipoVehiculo
 
 @app.route("/main3/CargarTipoVehiculo/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_tipovehiculo(entrada: str):
 
     respuesta = {}
@@ -191,6 +197,7 @@ def api_cargar_tipovehiculo(entrada: str):
 
 # POST - Insertar vehículo
 @app.route("/main3/InsertarTipoVehiculo", methods=["POST"])
+@token_required
 def api_insertar_tipovehiculo():
 
     datos = flask.request.json
@@ -201,6 +208,7 @@ def api_insertar_tipovehiculo():
 
 # PUT - Actualizar vehículo
 @app.route("/main3/ActualizarTipoVehiculo", methods=["PUT"])
+@token_required
 def api_actualizar_tipovehiculo():
 
     datos = flask.request.json
@@ -211,6 +219,7 @@ def api_actualizar_tipovehiculo():
 
 # DELETE - Eliminar vehículo
 @app.route("/main3/EliminarTipoVehiculo/<int:id_tipo>", methods=["DELETE"])
+@token_required
 def api_eliminar_tipovehiculo(id_tipo: int):
 
     servicio = Servicio_TipoVehiculo()
@@ -225,6 +234,7 @@ def api_eliminar_tipovehiculo(id_tipo: int):
 
 #GET - Cargar listado de empleados
 @app.route("/main3/CargarEmpleados/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_empleados(entrada: str):
 
     respuesta = {}
@@ -246,6 +256,7 @@ def api_cargar_empleados(entrada: str):
 
 # POST - Insertar empleado
 @app.route("/main3/InsertarEmpleado", methods=["POST"])
+@token_required
 def api_insertar_empleado():
 
     datos = flask.request.json
@@ -256,6 +267,7 @@ def api_insertar_empleado():
 
 # PUT - Actualizar empleado
 @app.route("/main3/ActualizarEmpleado", methods=["PUT"])
+@token_required
 def api_actualizar_empleado():
 
     datos = flask.request.json
@@ -266,6 +278,7 @@ def api_actualizar_empleado():
 
 #  DELETE - Eliminar empleado
 @app.route("/main3/EliminarEmpleado/<int:id_empleado>", methods=["DELETE"])
+@token_required
 def api_eliminar_empleado(id_empleado: int):
 
     servicio = Servicio_Empleado()
@@ -279,6 +292,7 @@ def api_eliminar_empleado(id_empleado: int):
 
 #GET - Cargar lista de roles de empleado
 @app.route("/main3/CargarRolEmpl/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_roles(entrada: str):
 
     respuesta = {}
@@ -301,6 +315,7 @@ def api_cargar_roles(entrada: str):
 
 # POST - Insertar rol de empleado
 @app.route("/main3/InsertarRolEmpl", methods=["POST"])
+@token_required
 def api_insertar_rol():
 
     datos = flask.request.json
@@ -311,6 +326,7 @@ def api_insertar_rol():
 
 #  PUT - Actualizar rol
 @app.route("/main3/ActualizarRolEmpl", methods=["PUT"])
+@token_required
 def api_actualizar_rol():
 
     datos = flask.request.json
@@ -321,6 +337,7 @@ def api_actualizar_rol():
 
 #  DELETE - Eliminar rol
 @app.route("/main3/EliminarRolEmpl/<int:id_rol>", methods=["DELETE"])
+@token_required
 def api_eliminar_rol(id_rol: int):
 
     servicio = Servicio_RolEmpleado()
@@ -335,6 +352,7 @@ def api_eliminar_rol(id_rol: int):
 
 #GET - Cargar lista de tarifas
 @app.route("/main3/CargarTarifas/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_tarifas(entrada: str):
 
     respuesta = {}
@@ -356,6 +374,7 @@ def api_cargar_tarifas(entrada: str):
 
 #GET - Cargar lista de tarifas
 @app.route("/main3/InsertarTarifa", methods=["POST"])
+@token_required
 def api_insertar_tarifa():
 
     datos = flask.request.json
@@ -366,6 +385,7 @@ def api_insertar_tarifa():
 
 # PUT - Actualizar tarifa
 @app.route("/main3/ActualizarTarifa", methods=["PUT"])
+@token_required
 def api_actualizar_tarifa():
 
     datos = flask.request.json
@@ -376,6 +396,7 @@ def api_actualizar_tarifa():
 
 # DELETE - Eliminar tarifa
 @app.route("/main3/EliminarTarifa/<int:id_tarifa>", methods=["DELETE"])
+@token_required
 def api_eliminar_tarifa(id_tarifa: int):
 
     servicio = Servicio_Tarifa()
@@ -391,6 +412,7 @@ def api_eliminar_tarifa(id_tarifa: int):
 # GET - Cargar lista de registros
 
 @app.route("/main3/CargarEntradaSalida/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_entradasalida(entrada: str):
 
     respuesta = {}
@@ -412,6 +434,7 @@ def api_cargar_entradasalida(entrada: str):
 
 # POST - Insertar registro
 @app.route("/main3/InsertarEntrada", methods=["POST"])
+@token_required
 def api_insertar_entrada():
 
     datos = flask.request.json
@@ -422,6 +445,7 @@ def api_insertar_entrada():
 
 # PUT - Actualizar registro
 @app.route("/main3/ActualizarEntradaSalida", methods=["PUT"])
+@token_required
 def api_actualizar_entradasalida():
 
     datos = flask.request.json
@@ -432,6 +456,7 @@ def api_actualizar_entradasalida():
 
 # DELETE - Eliminar registro
 @app.route("/main3/EliminarEntradaSalida/<int:id_registro>", methods=["DELETE"])
+@token_required
 def api_eliminar_entradasalida(id_registro: int):
 
     servicio = Servicio_EntradaSalida()
@@ -445,6 +470,7 @@ def api_eliminar_entradasalida(id_registro: int):
 
 # GET - Cargar métodos de pago
 @app.route("/main3/CargarMetodos/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_metodos(entrada: str):
 
     respuesta = {}
@@ -466,6 +492,7 @@ def api_cargar_metodos(entrada: str):
 
 # GET - Cargar métodos de pago
 @app.route("/main3/InsertarMetodo", methods=["POST"])
+@token_required
 def api_insertar_metodo():
 
     datos = flask.request.json
@@ -476,6 +503,7 @@ def api_insertar_metodo():
 
 # PUT - Actualizar método
 @app.route("/main3/ActualizarMetodo", methods=["PUT"])
+@token_required
 def api_actualizar_metodo():
 
     datos = flask.request.json
@@ -486,6 +514,7 @@ def api_actualizar_metodo():
 
 # DELETE - Eliminar método
 @app.route("/main3/EliminarMetodo/<int:id_metodo>", methods=["DELETE"])
+@token_required
 def api_eliminar_metodo(id_metodo: int):
 
     servicio = Servicio_MetodoPago()
@@ -500,6 +529,7 @@ def api_eliminar_metodo(id_metodo: int):
 # GET - Cargar listado de pagos
 
 @app.route("/main3/CargarPagos/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_pagos(entrada: str):
 
     respuesta = {}
@@ -521,6 +551,7 @@ def api_cargar_pagos(entrada: str):
 
 # POST - Insertar pago
 @app.route("/main3/InsertarPago", methods=["POST"])
+@token_required
 def api_insertar_pago():
 
     datos = flask.request.json
@@ -531,6 +562,7 @@ def api_insertar_pago():
 
 # PUT - Actualizar pago
 @app.route("/main3/ActualizarPago", methods=["PUT"])
+@token_required
 def api_actualizar_pago():
 
     datos = flask.request.json
@@ -541,6 +573,7 @@ def api_actualizar_pago():
 
 # DELETE - Eliminar pago
 @app.route("/main3/EliminarPago/<int:id_pago>", methods=["DELETE"])
+@token_required
 def api_eliminar_pago(id_pago: int):
 
     servicio = Servicio_Pago()
@@ -555,6 +588,7 @@ def api_eliminar_pago(id_pago: int):
 # GET - Cargar lista de facturas
 
 @app.route("/main3/CargarFacturas/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_facturas(entrada: str):
 
     respuesta = {}
@@ -576,6 +610,7 @@ def api_cargar_facturas(entrada: str):
 
 # POST - Insertar factura
 @app.route("/main3/InsertarFactura", methods=["POST"])
+@token_required
 def api_insertar_factura():
 
     datos = flask.request.json
@@ -586,6 +621,7 @@ def api_insertar_factura():
 
 # PUT - Actualizar factura
 @app.route("/main3/ActualizarFactura", methods=["PUT"])
+@token_required
 def api_actualizar_factura():
 
     datos = flask.request.json
@@ -596,6 +632,7 @@ def api_actualizar_factura():
 
 # DELETE - Eliminar factura
 @app.route("/main3/EliminarFactura/<int:id_factura>", methods=["DELETE"])
+@token_required
 def api_eliminar_factura(id_factura: int):
 
     servicio = Servicio_Factura()
@@ -611,6 +648,7 @@ def api_eliminar_factura(id_factura: int):
 
 # GET - Cargar lista de gastos
 @app.route("/main3/CargarGastos/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_gastos(entrada: str):
 
     respuesta = {}
@@ -632,6 +670,7 @@ def api_cargar_gastos(entrada: str):
 
 # POST - Insertar gasto
 @app.route("/main3/InsertarGasto", methods=["POST"])
+@token_required
 def api_insertar_gasto():
 
     datos = flask.request.json
@@ -642,6 +681,7 @@ def api_insertar_gasto():
 
 # PUT - Actualizar gasto
 @app.route("/main3/ActualizarGasto", methods=["PUT"])
+@token_required
 def api_actualizar_gasto():
 
     datos = flask.request.json
@@ -652,6 +692,7 @@ def api_actualizar_gasto():
 
 # DELETE - Eliminar gasto
 @app.route("/main3/EliminarGasto/<int:id_gasto>", methods=["DELETE"])
+@token_required
 def api_eliminar_gasto(id_gasto: int):
 
     servicio = Servicio_Gasto()
@@ -665,6 +706,7 @@ def api_eliminar_gasto(id_gasto: int):
 
 # GET - Cargar lista de multas
 @app.route("/main3/CargarMultas/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_multas(entrada: str):
 
     respuesta = {}
@@ -686,6 +728,7 @@ def api_cargar_multas(entrada: str):
 
 # POST - Insertar multas
 @app.route("/main3/InsertarMulta", methods=["POST"])
+@token_required
 def api_insertar_multa():
 
     datos = flask.request.json
@@ -696,6 +739,7 @@ def api_insertar_multa():
 
 # PUT - Actualizar multa
 @app.route("/main3/ActualizarMulta", methods=["PUT"])
+@token_required
 def api_actualizar_multa():
 
     datos = flask.request.json
@@ -706,6 +750,7 @@ def api_actualizar_multa():
 
 # DELETE - Eliminar multa
 @app.route("/main3/EliminarMulta/<int:id_multa>", methods=["DELETE"])
+@token_required
 def api_eliminar_multa(id_multa: int):
 
     servicio = Servicio_Multa()
@@ -720,6 +765,7 @@ def api_eliminar_multa(id_multa: int):
 
 # GET - Cargar lista de incidentes
 @app.route("/main3/CargarIncidentes/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_incidentes(entrada: str):
 
     respuesta = {}
@@ -741,6 +787,7 @@ def api_cargar_incidentes(entrada: str):
 
 # POST - Insertar incidente
 @app.route("/main3/InsertarIncidente", methods=["POST"])
+@token_required
 def api_insertar_incidente():
 
     datos = flask.request.json
@@ -751,6 +798,7 @@ def api_insertar_incidente():
 
 # PUT - Actualizar incidente
 @app.route("/main3/ActualizarIncidente", methods=["PUT"])
+@token_required
 def api_actualizar_incidente():
 
     datos = flask.request.json
@@ -761,6 +809,7 @@ def api_actualizar_incidente():
 
 # DELETE - Eliminar incidente
 @app.route("/main3/EliminarIncidente/<int:id_incidente>", methods=["DELETE"])
+@token_required
 def api_eliminar_incidente(id_incidente: int):
 
     servicio = Servicio_Incidente()
@@ -774,6 +823,7 @@ def api_eliminar_incidente(id_incidente: int):
 
 # GET - Cargar lista de membresias
 @app.route("/main3/CargarMembresias/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_membresias(entrada: str):
 
     respuesta = {}
@@ -795,6 +845,7 @@ def api_cargar_membresias(entrada: str):
 
 # POST - Insertar membresia
 @app.route("/main3/InsertarMembresia", methods=["POST"])
+@token_required
 def api_insertar_membresia():
 
     datos = flask.request.json
@@ -805,6 +856,7 @@ def api_insertar_membresia():
 
 # PUT - Actualizar membresia
 @app.route("/main3/ActualizarMembresia", methods=["PUT"])
+@token_required
 def api_actualizar_membresia():
 
     datos = flask.request.json
@@ -815,6 +867,7 @@ def api_actualizar_membresia():
 
 # DELETE - Eliminar membresia
 @app.route("/main3/EliminarMembresia/<int:id_membresia>", methods=["DELETE"])
+@token_required
 def api_eliminar_membresia(id_membresia: int):
 
     servicio = Servicio_Membresia()
@@ -829,6 +882,7 @@ def api_eliminar_membresia(id_membresia: int):
 
 # GET - Cargar lista de promociones
 @app.route("/main3/CargarPromociones/<string:entrada>", methods=["GET"])
+@token_required
 def api_cargar_promociones(entrada: str):
 
     respuesta = {}
@@ -850,6 +904,7 @@ def api_cargar_promociones(entrada: str):
 
 # POST - Insertar promoción
 @app.route("/main3/InsertarPromocion", methods=["POST"])
+@token_required
 def api_insertar_promocion():
 
     datos = flask.request.json
@@ -860,6 +915,7 @@ def api_insertar_promocion():
 
 # PUT - Actualizar promocion
 @app.route("/main3/ActualizarPromocion", methods=["PUT"])
+@token_required
 def api_actualizar_promocion():
 
     datos = flask.request.json
@@ -870,6 +926,7 @@ def api_actualizar_promocion():
 
 # DELETE - Eliminar promocion
 @app.route("/main3/EliminarPromocion/<int:id_promocion>", methods=["DELETE"])
+@token_required
 def api_eliminar_promocion(id_promocion: int):
 
     servicio = Servicio_Promocion()

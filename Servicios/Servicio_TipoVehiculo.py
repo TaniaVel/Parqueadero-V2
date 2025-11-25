@@ -17,7 +17,7 @@ class Servicio_TipoVehiculo:
         conexion = Conexion_TipoVehiculo()
         conexion.InsertarTipoVehiculo(self.__crear_tipo(data))
 
-        return "TipoVehiculo insertado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
     
   # PUT - Actualizar vehículo
     def ActualizarTipoVehiculo(self, data: dict):
@@ -27,7 +27,7 @@ class Servicio_TipoVehiculo:
         tipo.SetIdTipo(data["IdTipo"])
 
         conexion.ActualizarTipoVehiculo(tipo)
-        return "TipoVehiculo actualizado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
     
  # DELETE - Eliminar vehículo
     def EliminarTipoVehiculo(self, id_tipo: int):
@@ -35,7 +35,7 @@ class Servicio_TipoVehiculo:
         conexion = Conexion_TipoVehiculo()
         conexion.EliminarTipoVehiculo(id_tipo)
 
-        return "TipoVehiculo eliminado correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
 #  Método  para crear entidad
     def __crear_tipo(self, data):

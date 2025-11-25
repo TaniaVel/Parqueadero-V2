@@ -17,7 +17,7 @@ class Servicio_Promocion:
         conexion = Conexion_Promocion()
         conexion.InsertarPromocion(self.__crear_promocion(data))
 
-        return "Promoción registrada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # PUT - actualizar promoción
     def ActualizarPromocion(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_Promocion:
 
         conexion.ActualizarPromocion(promocion)
 
-        return "Promoción actualizada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - eliminar promoción
     def EliminarPromocion(self, id_promocion: int):
@@ -36,7 +36,7 @@ class Servicio_Promocion:
         conexion = Conexion_Promocion()
         conexion.EliminarPromocion(id_promocion)
 
-        return "Promoción eliminada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método interno para crear entidad
     def __crear_promocion(self, data):

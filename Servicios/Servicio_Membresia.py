@@ -17,7 +17,7 @@ class Servicio_Membresia:
         conexion = Conexion_Membresia()
         conexion.InsertarMembresia(self.__crear_membresia(data))
 
-        return "Membresía registrada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     #  PUT - actualizar membresía
     def ActualizarMembresia(self, data: dict):
@@ -28,7 +28,7 @@ class Servicio_Membresia:
 
         conexion.ActualizarMembresia(membresia)
 
-        return "Membresía actualizada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # DELETE - eliminar membresía
     def EliminarMembresia(self, id_membresia: int):
@@ -36,7 +36,7 @@ class Servicio_Membresia:
         conexion = Conexion_Membresia()
         conexion.EliminarMembresia(id_membresia)
 
-        return "Membresía eliminada correctamente"
+        return "Proceso ejecutado. Ver detalles en servidor"
 
     # Método interno para crear entidad
     def __crear_membresia(self, data):
