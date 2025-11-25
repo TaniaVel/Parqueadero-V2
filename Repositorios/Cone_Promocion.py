@@ -40,14 +40,92 @@ class Conexion_Promocion(Conexion):
             if cursor: cursor.close()
             if conexion: conexion.close()
 
+    def _validar_promocion(self, promocion: Promocion, modo="insertar"):
+        
+        #Valida los datos de una promoción antes de insertar o actualizar.
+
+        # ---- Validar nombre ----
+        nombre = promocion.GetNombre()
+        if not nombre or nombre.strip() == "":
+            raise ValueError("El nombre de la promoción es obligatorio.")
+        
+        if nombre.isnumeric():
+            raise ValueError("El nombre de la promoción no puede ser solo números.")
+
+        if len(nombre) > 100:
+            raise ValueError("El nombre de la promoción no debe superar 100 caracteres.")
+
+        # ---- Validar descripción ----
+        descripcion = promocion.GetDescripcion()
+        if descripcion and descripcion.strip() == "":
+            raise ValueError("La descripción no puede contener solo espacios.")
+
+        if descripcion and len(descripcion) > 200:
+            raise ValueError("La descripción supera el límite de 200 caracteres.")
+
+        # ---- Validar descuento ----
+        descuento = promocion.GetDescuento()
+        if descuento is None:
+            raise ValueError("El descuento es obligatorio.")
+
+        if descuento <= 0 or descuento > 100:
+            raise ValueError("El descuento debe ser mayor a 0 y menor o igual a 100.")
+
+        # ---- Validar fechas ----
+        fecha_inicio = promocion.GetFechaInicio()
+        fecha_fin = promocion.GetFechaFin()
+
+        if fecha_inicio >= fecha_fin:
+            raise ValueError("La fecha de inicio debe ser menor que la fecha de fin.")
+
+        # ---- Validación de duplicado ----
+        if modo == "insertar":
+            if self._existe_nombre(nombre):
+                raise ValueError(f"Ya existe una promoción con el nombre '{nombre}'.")
+
+        if modo == "actualizar":
+            if self._existe_nombre(nombre, promocion.GetIdPromocion()):
+                raise ValueError(f"Ya existe otra promoción con el nombre '{nombre}'.")
+
+    def _existe_nombre(self, nombre: str, id_excluir=None) -> bool:
+        conexion = None
+        cursor = None
+        try:
+            conexion = self.get_conexion()
+            cursor = conexion.cursor()
+
+            consulta = "SELECT id_promocion FROM Promocion WHERE nombre = ?"
+            cursor.execute(consulta, (nombre,))
+            resultado = cursor.fetchone()
+
+            if resultado:
+                if id_excluir and resultado[0] == id_excluir:
+                    return False
+                return True
+            
+            return False
+
+        except Exception as e:
+            print("Error validando nombre duplicado:", e)
+            return False
+
+        finally:
+            if cursor: cursor.close()
+            if conexion: conexion.close()
+
+
 
     # -------------------- INSERTAR PROMOCIÓN --------------------
     def InsertarPromocion(self, promocion: Promocion):
         conexion = None
         cursor = None
         try:
+            # Validaciones antes de insertar
+            self._validar_promocion(promocion, modo="insertar")
+
             conexion = self.get_conexion()
             cursor = conexion.cursor()
+
             consulta = "{CALL proc_insert_promocion(?, ?, ?, ?, ?)}"
             cursor.execute(consulta, (
                 promocion.GetNombre(),
@@ -57,35 +135,45 @@ class Conexion_Promocion(Conexion):
                 promocion.GetFechaFin()
             ))
             conexion.commit()
+
             print(f"\n Promoción '{promocion.GetNombre()}' insertada correctamente.")
 
+        except ValueError as ve:
+            #  Error de validación (datos incorrectos)
+            print("\n Validación fallida al insertar promoción:", ve)
+
         except pyodbc.IntegrityError as e:
-            print("\nError de integridad (posible duplicado o restricción):", e)
+            print("\nError de integridad (duplicado o restricción):", e)
 
         except Exception as e:
-            print("\n Error al insertar promoción:", e)
+            print("\nError general al insertar promoción:", e)
 
         finally:
             if cursor: cursor.close()
             if conexion: conexion.close()
 
 
-    # -------------------- ACTUALIZAR PROMOCIÓN --------------------
+# -------------------- ACTUALIZAR PROMOCIÓN --------------------
     def ActualizarPromocion(self, promocion: Promocion):
         conexion = None
         cursor = None
         try:
+            # 🔍 Validaciones antes de actualizar
+            self._validar_promocion(promocion, modo="actualizar")
+
             conexion = self.get_conexion()
             cursor = conexion.cursor()
 
-            # Verificar si la promoción existe antes de actualizar
-            cursor.execute("SELECT COUNT(*) FROM Promocion WHERE id_promocion = ?", (promocion.GetIdPromocion(),))
+            # 🔎 Verificar si existe antes de actualizar
+            cursor.execute("SELECT COUNT(*) FROM Promocion WHERE id_promocion = ?", 
+                           (promocion.GetIdPromocion(),))
             existe = cursor.fetchone()[0]
 
             if existe == 0:
                 print(f"\n La promoción con ID {promocion.GetIdPromocion()} no existe. No se puede actualizar.")
                 return
 
+            # Ejecutar actualización
             consulta = "{CALL proc_update_promocion(?, ?, ?, ?, ?, ?)}"
             cursor.execute(consulta, (
                 promocion.GetIdPromocion(),
@@ -98,9 +186,12 @@ class Conexion_Promocion(Conexion):
             conexion.commit()
 
             if cursor.rowcount == 0:
-                print(f"\n No hubo cambios: los valores son iguales a los actuales para la promoción ID {promocion.GetIdPromocion()}.")
+                print(f"\n No hubo cambios. Los valores enviados son iguales a los actuales.")
             else:
-                print(f"\n Promoción con ID {promocion.GetIdPromocion()} actualizada correctamente.")
+                print(f"\n Promoción ID {promocion.GetIdPromocion()} actualizada correctamente.")
+
+        except ValueError as ve:
+            print("\n Validación fallida al actualizar promoción:", ve)
 
         except pyodbc.IntegrityError as e:
             print("\n Error de integridad al actualizar promoción:", e)
@@ -111,7 +202,6 @@ class Conexion_Promocion(Conexion):
         finally:
             if cursor: cursor.close()
             if conexion: conexion.close()
-
 
     # -------------------- ELIMINAR PROMOCIÓN --------------------
     def EliminarPromocion(self, id_promocion: int):
